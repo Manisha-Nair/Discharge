@@ -10,7 +10,17 @@ import discharge.utils.DischargeUtils;
 public class DischargeServiceImpl implements DischargeService {
 
 	DischargeUtils utils = new DischargeUtils();
-	DischargeDao patientDao = new Dischargedaoimpl();
+	// DischargeDao patientDao = new Dischargedaoimpl();
+
+	private DischargeDao patientDao;
+
+	public DischargeServiceImpl(DischargeDao patientDao) {
+
+		super();
+
+		this.patientDao = patientDao;
+
+	}
 
 	@Override
 	public Dischargedto getDischargeByDischargeId(String patientId) {
@@ -24,53 +34,46 @@ public class DischargeServiceImpl implements DischargeService {
 		Dischargedto patientdto;
 		try {
 			patientDao.openConnection();
-
 			patientdto = patientDao.getDischargeById(patientId);
-		} finally {
+		} 
+		finally {
 			patientDao.closeConnection();
 		}
 
 		return patientdto;
 	}
-		
-		@Override
-		public Dischargedto createPatient(Dischargedto patientdto) throws InvalidRequestException{
 
-			// TODO Auto-generated method stub
-			Dischargedto patdto = new Dischargedto();
+	@Override
+	public Dischargedto createPatient(Dischargedto patientdto) throws InvalidRequestException {
 
-			utils.validatePatientRequest(patientdto);
+		Dischargedto patdto = new Dischargedto();
 
-			
+		utils.validatePatientRequest(patientdto);
 
-			patdto = savePatient(patientdto);
+		patdto = savePatient(patientdto);
 
-			return patdto;
+		return patdto;
 
-		}
-
-
-
-		private Dischargedto savePatient(Dischargedto patientdto) {
-
-			Dischargedto patdto;
-
-			try {
-
-				patientDao.openConnection();
-
-				
-
-				patdto= patientDao.savePatient(patientdto);
-
-			}
-
-			finally {
-
-				patientDao.closeConnection();
-
-			}
-
-			return patdto;
-		}
 	}
+
+	private Dischargedto savePatient(Dischargedto patientdto) {
+
+		Dischargedto patdto;
+
+		try {
+
+			patientDao.openConnection();
+
+			patdto = patientDao.savePatient(patientdto);
+
+		}
+
+		finally {
+
+			patientDao.closeConnection();
+
+		}
+
+		return patdto;
+	}
+}

@@ -17,11 +17,15 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.ws.rs.PathParam;
 
 @Path("/patient")
 public class DischargeResource {
+	
+	@Autowired
+	DischargeService dischargeService;
 
 	@GET
 	@Path("/{patient_id}")
@@ -30,7 +34,7 @@ public class DischargeResource {
 
 		DischargeResponse response = new DischargeResponse();
 
-		DischargeService dischargeService = new DischargeServiceImpl();
+		//DischargeService dischargeService = new DischargeServiceImpl();
 
 		Dischargedto dischargedto = dischargeService.getDischargeByDischargeId(patient_id);
 
@@ -52,7 +56,7 @@ public class DischargeResource {
 		BeanUtils.copyProperties(request, patientdto);
 
 
-		DischargeService dischargeService = new DischargeServiceImpl();
+		//DischargeService dischargeService = new DischargeServiceImpl();
 		Dischargedto createdpatientdto = dischargeService.createPatient(patientdto);
 
 
