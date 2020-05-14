@@ -52,8 +52,8 @@ public class DischargeResource {
 		BeanUtils.copyProperties(request, patientdto);
 
 
-		DischargeDao patientdao = new Dischargedaoimpl();
-		Dischargedto createdpatientdto = patientdao.savePatient(patientdto);
+		DischargeService dischargeService = new DischargeServiceImpl();
+		Dischargedto createdpatientdto = dischargeService.createPatient(patientdto);
 
 
 		BeanUtils.copyProperties(createdpatientdto, response);

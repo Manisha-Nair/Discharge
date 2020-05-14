@@ -13,18 +13,13 @@ import discharge.dao.entity.DischargeEntity;
 import discharge.dto.Dischargedto;
 import discharge.hibernate.utils.HibernateUtils;
 
-
-
-
-
-
 public class Dischargedaoimpl implements DischargeDao{
 	
 	Session session;
 
 	@Override
 	public void openConnection() {
-		// TODO Auto-generated method stub
+
 		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 		session= sessionFactory.openSession();
 		
@@ -32,7 +27,7 @@ public class Dischargedaoimpl implements DischargeDao{
 
 	@Override
 	public Dischargedto getDischargeById(String patientId) {
-		// TODO Auto-generated method stub
+
 		Dischargedto patientdto = new Dischargedto();
 		
 		long patId = Long.parseLong(patientId);
@@ -60,14 +55,14 @@ public class Dischargedaoimpl implements DischargeDao{
 	
 	@Override
 	public void closeConnection() {
-		// TODO Auto-generated method stub
+
 		if(session!=null)
 			session.close();
 	}
 
 	@Override
 	public Dischargedto savePatient(Dischargedto patientdto) {
-		// TODO Auto-generated method stub
+
 		Dischargedto savedPatient=null;
 		DischargeEntity patientEntity= new DischargeEntity();
 		

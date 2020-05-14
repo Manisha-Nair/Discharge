@@ -3,21 +3,24 @@ package discharge.service.impl;
 import discharge.dao.DischargeDao;
 import discharge.dao.impl.Dischargedaoimpl;
 import discharge.dto.Dischargedto;
+import discharge.exception.InvalidRequestException;
 import discharge.service.DischargeService;
+import discharge.utils.DischargeUtils;
 
 public class DischargeServiceImpl implements DischargeService {
 
+	DischargeUtils utils = new DischargeUtils();
 	DischargeDao patientDao = new Dischargedaoimpl();
 
 	@Override
 	public Dischargedto getDischargeByDischargeId(String patientId) {
-		// TODO Auto-generated method stub
+
 		Dischargedto patientdto = getDischarge(patientId);
 		return patientdto;
 	}
 
 	private Dischargedto getDischarge(String patientId) {
-		// TODO Auto-generated method stub
+
 		Dischargedto patientdto;
 		try {
 			patientDao.openConnection();
@@ -29,5 +32,45 @@ public class DischargeServiceImpl implements DischargeService {
 
 		return patientdto;
 	}
+		
+		@Override
+		public Dischargedto createPatient(Dischargedto patientdto) throws InvalidRequestException{
 
-}
+			// TODO Auto-generated method stub
+			Dischargedto patdto = new Dischargedto();
+
+			utils.validatePatientRequest(patientdto);
+
+			
+
+			patdto = savePatient(patientdto);
+
+			return patdto;
+
+		}
+
+
+
+		private Dischargedto savePatient(Dischargedto patientdto) {
+
+			Dischargedto patdto;
+
+			try {
+
+				patientDao.openConnection();
+
+				
+
+				patdto= patientDao.savePatient(patientdto);
+
+			}
+
+			finally {
+
+				patientDao.closeConnection();
+
+			}
+
+			return patdto;
+		}
+	}
