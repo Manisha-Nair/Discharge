@@ -5,7 +5,7 @@ import discharge.exception.InvalidRequestException;
 import discharge.response.ErrorMessages;
 
 public class DischargeUtils {
-	public void validatePatientRequest(Dischargedto patientdto) {
+	public void validatePatientRequest(Dischargedto patientdto) throws RuntimeException{
 
 		// TODO Auto-generated method stub
 

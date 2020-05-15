@@ -2,11 +2,11 @@ package discharge.response;
 
 public enum ErrorMessages {
 
+	NO_PATIENT_FOUND("Patient with entered Id is not present"),
+	
 	INVALID_FIELD("Invalid field value. Please check documentation"),
 
-	INTERNAL_SERVER_ERROR("Internal Server error"),
-
-	NO_PATIENT_FOUND("Patient with entered Id is not present");
+	INTERNAL_SERVER_ERROR("Internal Server error");
 
 	private String errormessage;
 
