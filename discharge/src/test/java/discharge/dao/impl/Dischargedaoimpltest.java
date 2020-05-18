@@ -2,93 +2,67 @@ package discharge.dao.impl;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
-
-import java.io.InputStream;
-
-import java.io.OutputStream;
-
-import java.net.HttpURLConnection;
-
-import java.net.URL;
-
-import java.net.URLConnection;
-
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
 import org.junit.Test;
 
-import org.junit.runner.RunWith;
-
-import org.mockito.Mock;
-
-import org.mockito.Mockito;
-
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.BeanUtils;
-
-import com.fasterxml.jackson.core.JsonParser.Feature;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import discharge.dao.DischargeDao;
-import discharge.dao.entity.DischargeEntity;
 import discharge.dto.Dischargedto;
-
-import discharge.response.DischargeResponse;
-
-@RunWith(MockitoJUnitRunner.class)
 
 public class Dischargedaoimpltest {
 
-	@Mock
-	DischargeDao impl;
+	private static DischargeDao impl = new Dischargedaoimpl();
 
-	@Test
-	public void testgetDischargeById() {
+	@BeforeClass
+	public static void runBefore() {
 
-		Dischargedto patient = new Dischargedto();
+		impl.openConnection();
 
-		patient.setPatient_name("David");
+	}
 
-		Mockito.when(impl.getDischargeById("1")).thenReturn(patient);
+	@AfterClass
+	public static void runAfter() {
 
-		String actual = impl.getDischargeById("1").getPatient_name();
-
-		assertEquals("David", actual);
+		impl.closeConnection();
 
 	}
 
 	@Test
-	public void testnegativegetDischargeById() {
+	public void testgetDischargeById() {
 
-		Dischargedto patient = new Dischargedto();
+		Dischargedto patient = impl.getDischargeById("1");
 
-		Mockito.when(impl.getDischargeById("50")).thenReturn(patient);
+		assertEquals("ecg", patient.getTreatment());
 
-		String actual = impl.getDischargeById("50").getPatient_name();
+	}
 
-		assertEquals(null, actual);
+	@Test
+	public void testnegativegetPatientById() {
+
+		Dischargedto patient = impl.getDischargeById("50");
+
+		assertEquals(null, patient);
 
 	}
 
 	@Test
 	public void testsavePatient() {
 
-		Dischargedto patientdto = new Dischargedto();
+		Dischargedto patient = new Dischargedto();
 
-		DischargeEntity patientEntity = new DischargeEntity();
+		patient.setPatient_name("David");
 
-		Dischargedto savedPatient = new Dischargedto();
+		patient.setTreatment("ecg");
 
-		BeanUtils.copyProperties(patientdto, patientEntity);
+		patient.setTransportation("yes");
 
-		BeanUtils.copyProperties(patientEntity, savedPatient);
+		patient.setHomecare("no");
 
-		Mockito.when(impl.savePatient(patientdto)).thenReturn(savedPatient);
+		patient.setClinicalequipment("no");
 
-		Dischargedto actual = impl.savePatient(patientdto);
+		Dischargedto actual = impl.savePatient(patient);
 
-		assertEquals(savedPatient, actual);
+		assertEquals(patient.getClinicalequipment(), actual.getClinicalequipment());
 
 	}
-
 }

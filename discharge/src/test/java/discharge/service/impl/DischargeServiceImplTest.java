@@ -38,7 +38,7 @@ public class DischargeServiceImplTest {
 	}
 
 	@Test(expected = NoDischargeFoundException.class)
-	public void testnegativegetPatientById() {
+	public void testnegativegetDischargeById() {
 
 		Mockito.when(dao.getDischargeById("9")).thenThrow(new NoDischargeFoundException("Error"));
 
@@ -47,7 +47,7 @@ public class DischargeServiceImplTest {
 	}
 
 	@Test
-	public void testsavePatientPositive() {
+	public void testpositivesavePatient() {
 		
 		Dischargedto patient = new Dischargedto();
 

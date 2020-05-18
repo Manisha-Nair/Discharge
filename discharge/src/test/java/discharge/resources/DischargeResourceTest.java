@@ -8,8 +8,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.BeanUtils;
 
 import discharge.dto.Dischargedto;
+import discharge.request.DischargeRequest;
 import discharge.response.DischargeResponse;
 import discharge.service.DischargeService;
 
@@ -37,4 +39,40 @@ public class DischargeResourceTest {
 
 	}
 
+	@Test
+	public void testaddPatientInfo() {
+
+		DischargeRequest request = new DischargeRequest();
+
+		request.setPatient_name("David");
+
+		request.setTreatment("ecg");
+
+		request.setTransportation("yes");
+
+		request.setHomecare("no");
+
+		request.setClinicalequipment("no");
+
+		Dischargedto savedPatient = new Dischargedto();
+
+		savedPatient.setId(40);
+
+		savedPatient.setPatient_name("David");
+
+		savedPatient.setTreatment("ecg");
+
+		savedPatient.setTransportation("yes");
+
+		savedPatient.setHomecare("no");
+
+		savedPatient.setClinicalequipment("no");
+		
+		Mockito.when(service.createPatient(Mockito.any(Dischargedto.class))).thenReturn(savedPatient);
+
+		DischargeResponse response = resource.addPatientInfo(request);
+
+		assertEquals("no", response.getClinicalequipment());
+
+	}
 }
