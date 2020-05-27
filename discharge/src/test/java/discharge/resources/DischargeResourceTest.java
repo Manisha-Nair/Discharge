@@ -38,6 +38,37 @@ public class DischargeResourceTest {
 		assertEquals("Albert", response.getPatient_name());
 
 	}
+	
+	@Test
+	public void test2getDischargeById() {
+
+		Dischargedto discharge = new Dischargedto();
+
+		discharge.setTreatment("kideny stone");
+
+		Mockito.when(service.getDischargeByDischargeId("kideny stone")).thenReturn(discharge);
+
+		DischargeResponse response = resource.getDischargeById("kideny stone");
+
+		assertEquals("kideny stone", response.getTreatment());
+
+	}
+
+	
+	@Test
+	public void test3getDischargeById() {
+
+		Dischargedto discharge = new Dischargedto();
+
+		discharge.setTransportation("no");
+
+		Mockito.when(service.getDischargeByDischargeId("no")).thenReturn(discharge);
+
+		DischargeResponse response = resource.getDischargeById("no");
+
+		assertEquals("no", response.getTransportation());
+
+	}
 
 	@Test
 	public void testaddPatientInfo() {

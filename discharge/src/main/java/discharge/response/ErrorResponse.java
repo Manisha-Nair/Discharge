@@ -13,11 +13,11 @@ public class ErrorResponse {
 
 	
 
-	public ErrorResponse() {
+	/*public ErrorResponse() {
 
 		super();
 
-	}
+	}*/
 
 	public ErrorResponse(String errorMessage, String errorMessageCode, String href) {
 

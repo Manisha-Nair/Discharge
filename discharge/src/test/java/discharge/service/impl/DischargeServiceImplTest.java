@@ -40,9 +40,9 @@ public class DischargeServiceImplTest {
 	@Test(expected = NoDischargeFoundException.class)
 	public void testnegativegetDischargeById() {
 
-		Mockito.when(dao.getDischargeById("9")).thenThrow(new NoDischargeFoundException("Error"));
+		Mockito.when(dao.getDischargeById("100")).thenThrow(new NoDischargeFoundException("Error"));
 
-		impl.getDischargeByDischargeId("9");
+		impl.getDischargeByDischargeId("100");
 
 	}
 

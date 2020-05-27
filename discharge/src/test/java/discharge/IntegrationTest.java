@@ -26,10 +26,6 @@ public class IntegrationTest {
 
 		HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
 
-		// urlConnect.setRequestProperty("Authorization","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtZWRib29raW5nLmFwaSIsImlhdCI6MTU4OTI3MjM5Miwic3ViIjoiYXBwdXNlciIsInJvbGVzIjoidXNlciIsImlzcyI6Im1lZGJvb2tpbmciLCJleHAiOjE1ODkyNzU5OTJ9.JUWvJnuzzEHt2-Xqj2SHwHKOYNz_pdtBthl3uoBUrgA");
-
-		//urlConnect.setRequestProperty("Accept", "application/json");
-
 		InputStream is = urlConnect.getInputStream();
 
 		int i = 0;
@@ -68,7 +64,6 @@ public class IntegrationTest {
         String response= new String();
         HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
         urlConnect.setRequestMethod("POST");
-        //urlConnect.setRequestProperty("Authorization","eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtZWRib29raW5nLmFwaSIsImlhdCI6MTU4OTI3MjM5Miwic3ViIjoiYXBwdXNlciIsInJvbGVzIjoidXNlciIsImlzcyI6Im1lZGJvb2tpbmciLCJleHAiOjE1ODkyNzU5OTJ9.JUWvJnuzzEHt2-Xqj2SHwHKOYNz_pdtBthl3uoBUrgA");
         urlConnect.setRequestProperty("Content-Type", "application/json");
         urlConnect.setRequestProperty("Accept", "application/json");
         urlConnect.setDoOutput(true);

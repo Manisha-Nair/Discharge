@@ -39,7 +39,7 @@ public class Dischargedaoimpltest {
 	@Test
 	public void testnegativegetPatientById() {
 
-		Dischargedto patient = impl.getDischargeById("50");
+		Dischargedto patient = impl.getDischargeById("100");
 
 		assertEquals(null, patient);
 

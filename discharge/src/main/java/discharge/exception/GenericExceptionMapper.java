@@ -8,7 +8,7 @@ import discharge.response.ErrorMessages;
 import discharge.response.ErrorResponse;
 
 @Provider
-public class GenericMapperException implements ExceptionMapper<Throwable> {
+public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
 
 	@Override
 	public Response toResponse(Throwable exception) {
